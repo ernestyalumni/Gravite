@@ -15,6 +15,18 @@ sage: load(‘‘Rn.sage’’)
 sage: R2eg = R2() 
 sage: R3eg = R3() 
 sage: R4 = Rn(4) 
+sage: R2eg.M.atlas()
+[Chart (R2, (x, y)), Chart (U, (x, y)), Chart (U, (r, ph))]
+sage: R3eg.M.atlas()
+[Chart (R3, (x, y, z)),
+ Chart (U, (x, y, z)),
+ Chart (U, (rh, th, ph)),
+ Chart (U, (r, phi, zc))]
+sage: R4.M.atlas()
+[Chart (R4, (x1, x2, x3, x4)),
+ Chart (U, (x1, x2, x3, x4)),
+ Chart (U, (rh, th1, th2, ph)),
+ Chart (U, (r, the1, phi, z))]
 ```
 
 * (carefully) define a spherical coordinate and cylindrical coordinate chart on Euclidean spaces, e.g.
