@@ -4,8 +4,9 @@ Notes and symbolic and numerical computations and implementations on Gravity
 Includes: 
 * Gravity_Notes_grande.tex
 * /pdfs/Gravity_Notes_grande.pdf
+* `Rn.sage` 
 
-## Rn.sage Euclidean spaces as manifolds using [sagemanifolds](http://sagemanifolds.obspm.fr)
+## Rn.sage - Euclidean spaces as manifolds using [sagemanifolds](http://sagemanifolds.obspm.fr)
 *Features*
 * R^2,R^3,R^n as a manifold, with a chart atlas
 
@@ -36,10 +37,13 @@ x4 = rh*cos(th1)
 * calculate the **Jacobian!**
 
 ```
-sage: to_orthonormal2 , e2, Jacobians2 = R2eg.make_orthon_frames(R2eg.sph_ch) sage: Jacobians2[0].inverse()[:,R2eg.sph_ch]
+sage: to_orthonormal2 , e2, Jacobians2 = R2eg.make_orthon_frames(R2eg.sph_ch) 
+sage: Jacobians2[0].inverse()[:,R2eg.sph_ch]
 [ cos(ph) -r*sin(ph)]
 [ sin(ph) r*cos(ph)]
-sage: to_orthonormal3sph, e3sph, Jacobians3sph = R3eg.make_orthon_frames(R3eg.sph_ch) sage: to_orthonormal3cyl, e3cyl, Jacobians3cyl = R3eg.make_orthon_frames(R3eg.cyl_ch) sage: Jacobians3sph[0].inverse()[:,R3eg.sph_ch]
+sage: to_orthonormal3sph, e3sph, Jacobians3sph = R3eg.make_orthon_frames(R3eg.sph_ch) 
+sage: to_orthonormal3cyl, e3cyl, Jacobians3cyl = R3eg.make_orthon_frames(R3eg.cyl_ch) 
+sage: Jacobians3sph[0].inverse()[:,R3eg.sph_ch]
 [ cos(ph)*sin(th) rh*cos(ph)*cos(th) -rh*sin(ph)*sin(th)]
 [ sin(ph)*sin(th) rh*cos(th)*sin(ph) rh*cos(ph)*sin(th) ]
 [ cos(th)         -rh*sin(th)        0                  ]
@@ -56,6 +60,34 @@ sage: R2eg.equip_metric()
 sage: R3eg.equip_metric() 
 sage: R4.equip_metric()
 
-R2eg.g.display(R2eg.sph_ch.frame(),R2eg.sph_ch)
+sage: R2eg.g.display(R2eg.sph_ch.frame(),R2eg.sph_ch)
+g = dr*dr + r^2 dph*dph
+sage: R3eg.g.display(R3eg.sph_ch.frame(),R3eg.sph_ch)
+g = drh*drh + rh^2 dth*dth + rh^2*sin(th)^2 dph*dph
+sage: R3eg.g.display(R3eg.cyl_ch.frame(),R3eg.cyl_ch)
+g = dr*dr + r^2 dphi*dphi + dzc*dzc
+sage: R4.g.display(R4.sph_ch.frame(),R4.sph_ch)
+g = drh*drh + rh^2 dth1*dth1 + rh^2*sin(th1)^2 dth2*dth2 + rh^2*sin(th1)^2*sin(th2)^2 dph*dph
+sage: R4.g.display(R4.cyl_ch.frame(),R4.cyl_ch)
+g = dr*dr + r^2 dthe1*dthe1 + r^2*sin(the1)^2 dphi*dphi + dz*dz
+```
+* Calculate the so-called orthonormal non-coordinate basis vectors in terms of the (local) coordinate basis vectors, showing clearly and distinctively the difference between the two (concepts)
 
+```
+sage: e2[1].display( R2eg.sph_ch.frame(), R2eg.sph_ch)
+e_1 = d/dr
+sage: e2[2].display( R2eg.sph_ch.frame(), R2eg.sph_ch)
+e_2 = 1/r d/dph
+sage: for i in range(1,3+1):                                                         
+    e3sph[i].display( R3eg.sph_ch.frame(), R3eg.sph_ch )
+....:     
+e_1 = d/drh
+e_2 = 1/rh d/dth
+e_3 = 1/(rh*sin(th)) d/dph
+sage: for i in range(1,3+1):
+    e3cyl[i].display( R3eg.cyl_ch.frame(), R3eg.cyl_ch )
+....:     
+e_1 = d/dr
+e_2 = 1/r d/dphi
+e_3 = d/dzc
 ```
