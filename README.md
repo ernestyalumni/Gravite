@@ -48,3 +48,14 @@ sage: Jacobians3cyl[0].inverse()[:,R3eg.cyl_ch]
 [ sin(phi) r*cos(phi) 0] 
 [ 0 0 1]
 ```
+
+* equip the Euclidean space manifold with a *metric* *g* and calculate the metric automatically:
+
+```
+sage: R2eg.equip_metric() 
+sage: R3eg.equip_metric() 
+sage: R4.equip_metric()
+
+R2eg.g.display(R2eg.sph_ch.frame(),R2eg.sph_ch)
+
+```
