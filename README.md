@@ -9,16 +9,16 @@ Includes:
 *Features*
 * R^2,R^3,R^n as a manifold, with a chart atlas
 
-<code>
+```
 sage: load(‘‘Rn.sage’’)  
-sage: R2eg = R2()
-sage: R3eg = R3()
-sage: R4 = Rn(4)
-</code>
+sage: R2eg = R2() 
+sage: R3eg = R3() 
+sage: R4 = Rn(4) 
+```
 
 * (carefully) define a spherical coordinate and cylindrical coordinate chart on Euclidean spaces, e.g.
 
-<code>
+```
 sage: R2eg.transit_sph_to_cart.display() x = r*cos(ph)
 y = r*sin(ph)
 sage: R3eg.transit_sph_to_cart.display() x = rh*cos(ph)*sin(th)
@@ -31,11 +31,11 @@ sage: R4.transit_sph_to_cart.display() x1 = rh*cos(ph)*sin(th1)*sin(th2)
 x2 = rh*sin(ph)*sin(th1)*sin(th2)
 x3 = rh*cos(th2)*sin(th1)
 x4 = rh*cos(th1)
-</code>
+```
 
 * calculate the **Jacobian!**
 
-<code>
+```
 sage: to_orthonormal2 , e2, Jacobians2 = R2eg.make_orthon_frames(R2eg.sph_ch) sage: Jacobians2[0].inverse()[:,R2eg.sph_ch]
 [ cos(ph) -r*sin(ph)]
 [ sin(ph) r*cos(ph)]
@@ -47,4 +47,4 @@ sage: Jacobians3cyl[0].inverse()[:,R3eg.cyl_ch]
 [ cos(phi) -r*sin(phi) 0]
 [ sin(phi) r*cos(phi) 0] 
 [ 0 0 1]
-</code>
+```
