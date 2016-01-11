@@ -1,4 +1,4 @@
-# Gravite
+# Gravite - Gravity, Gravité
 Notes and symbolic and numerical computations and implementations on Gravity
 
 Includes: 
