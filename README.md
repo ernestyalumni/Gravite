@@ -32,15 +32,19 @@ sage: R4.M.atlas()
 * (carefully) define a spherical coordinate and cylindrical coordinate chart on Euclidean spaces, e.g.
 
 ```
-sage: R2eg.transit_sph_to_cart.display() x = r*cos(ph)
+sage: R2eg.transit_sph_to_cart.display() 
+x = r*cos(ph)
 y = r*sin(ph)
-sage: R3eg.transit_sph_to_cart.display() x = rh*cos(ph)*sin(th)
+sage: R3eg.transit_sph_to_cart.display() 
+x = rh*cos(ph)*sin(th)
 y = rh*sin(ph)*sin(th)
 z = rh*cos(th)
-sage: R3eg.transit_cyl_to_cart.display() x = r*cos(phi)
+sage: R3eg.transit_cyl_to_cart.display() 
+x = r*cos(phi)
 y = r*sin(phi)
 z = zc
-sage: R4.transit_sph_to_cart.display() x1 = rh*cos(ph)*sin(th1)*sin(th2)
+sage: R4.transit_sph_to_cart.display() 
+x1 = rh*cos(ph)*sin(th1)*sin(th2)
 x2 = rh*sin(ph)*sin(th1)*sin(th2)
 x3 = rh*cos(th2)*sin(th1)
 x4 = rh*cos(th1)
