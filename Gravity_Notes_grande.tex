@@ -2134,6 +2134,8 @@ a^2 \ddot{X}^{\alpha} + a^2 \Gamma^{\alpha}_{ \, \, \gamma \delta} \dot{X}^{\gam
 
 \section{Lecture 10: Metric Manifolds}
 
+cf. \href{https://youtu.be/ONCZNwKswn4}{Lecture 10: Metric Manifolds (International Winter School on Gravity and Light 2015)}
+
 We establish a structure on a smooth manifold that allows one to assign vectors in each tangent space a length (and an angle between vectors in the same tangent space).
 
 From this structure, one can then define a notion of length of a curve. \\
@@ -3861,8 +3863,6 @@ EY : 20150422 I would suggest that after seeing this, one would calculate the me
 \begin{lstlisting}[frame=single]
 sage: load(``Schwarzschild_BH.sage'')
 4-dimensional manifold 'M'
-/Applications/Sage-6.6.app/Contents/Resources/sage/local/lib/python2.7/site-packages/sage/geometry/manifolds/utilities.py:283: DeprecationWarning: simplify_radical is deprecated. Please use canonicalize_radical instead.
-See http://trac.sagemath.org/11912 for details.
   expr = expr.simplify_radical()
 Levi-Civita connection 'nabla_g' associated with the Lorentzian metric 'g' on the 4-dimensional manifold 'M'
 Launched png viewer for Graphics object consisting of 4 graphics primitives
@@ -3909,6 +3909,473 @@ $(A\times B)_i = e_{ijk} A^j B^k$ or $A\times B = A^j B^k \epsilon_{ijk} e_i$
 
 if $\text{dim}M = 3$, $*(A\wedge B) = \frac{\sqrt{g}}{(3-2)!} A_i B_j g^{il} g^{jm} \epsilon_{lmn} dx^n = \sqrt{g} g^{il} A_i g^{jm} B_j \epsilon_{lmn}dx^n$
 
+
+
+
+\part{Euclidean space}
+
+\section{$\mathbb{R}^2$}
+
+Consider $\mathbb{R}^2$ as a smooth manifold.  
+
+Clearly, $\mathbb{R}^2$ is covered by 1 chart, with so-called \emph{Cartesian} coordinates (that also happen to be global coordinates, in this particular case): $(\mathbb{R}^2, \mathcal{O}_{\text{std}}, \mathcal{A} = \lbrace = \lbrace (\mathbb{R}^2, \varphi_{\text{cart}} ) \rbrace )$, with the chart (which is a homeomorphism, by definition)
+\[
+\begin{aligned}
+  & \varphi_{\text{cart}} : \mathbb{R}^2 \to \mathbb{R}^2 \\ 
+  & \varphi_{\text{cart}} : p \equiv (x,y) \mapsto (x,y)
+\end{aligned}
+\]
+Clearly, $\varphi_{\text{cart}} = 1_{\mathbb{R}^2}$ is a homeomorphism; in fact, it's a smooth diffeomorphism.  
+
+$\mathcal{O}_{\text{std}}$ denotes the so-called ``standard'' topology, that open sets consists of Euclidean $d$-balls.  I will assume this topology for this discussion of $\mathbb{R}^d$'s.  
+
+Clearly, the above discussion generalizes to $\mathbb{R}^d$.  
+
+Consider the so-called \emph{polar} coordinates 
+\begin{equation}\label{Eq:R2polarcoordinates}
+\begin{aligned}
+  & x = r\cos{\varphi} \\ 
+  & y = r\sin{\varphi}
+\end{aligned}
+\end{equation}
+where $r\geq 0$ and $\varphi \in \mathbb{R}$.  We want to construction a homeomorphism $\varphi^{-1}_{\text{pol}}$ from an open subset $V \subseteq \mathbb{R}^2$ to $\mathbb{R}^2$ according to these polar coordinates:
+\[
+\begin{aligned}
+  & \varphi_{\text{pol}}^{-1}: V \subseteq \mathbb{R}^2 \to \mathbb{R}^2 \\ 
+  & \varphi^{-1}_{\text{pol}}:(r,\varphi) \mapsto (x,y)
+\end{aligned}
+\]
+Immediately, from this choice of polar coordinates, we see problems with defining a homeomorphism, which is a bijection by definition.  For instance, let $(\varphi_{\text{pol}}^{-1})^{-1} \equiv \varphi_{\text{pol}}$ (defining this highly suggestive notation), and so 
+\[
+\begin{aligned}
+  & \varphi_{\text{pol}}:\mathbb{R}^2 \to \mathbb{R}^2 \\ 
+  & \varphi_{\text{pol}}:(x,y) \mapsto (r,\varphi)
+\end{aligned}
+\]
+The single point, the origin of $\mathbb{R}^2$, gets mapped to many possible values! In other words,
+\[
+\varphi_{\text{pol}}(0,0) = \lbrace (r,\varphi) | r=0 \text{ or } \varphi \in \mathbb{R} \rbrace
+\]
+Clearly this must be the case for any kind of coordinates involving $\cos$'s, $\sin$'s, etc. (i.e. transcendental functions).  So the choice of these kinds of coordinates necessitate giving up on the possibility of a single chart covering the entire manifold of the Euclidean space.  
+
+Consider 
+\[
+\begin{aligned}
+  & V := \lbrace (r,\varphi) | r>0, \varphi \in (0,2\pi) \rbrace \subset \mathbb{R}^2 \\ 
+  & [0,\infty) \times [0,2\pi ) - V = \lbrace (r,\varphi) | r = 0 \text{ or } \varphi = 0 \rbrace
+\end{aligned}
+\]
+Now $\varphi_{\text{pol}}^{-1}( [0,\infty) \times [0,2\pi)) = \mathbb{R}^2$, i.e. $\varphi_{\text{pol}}^{-1}$ maps $[0,\infty) \times [0,2\pi)$ \emph{onto} $\mathbb{R}^2$ ``once.''  
+
+Now consider if $\varphi=0$.  Then $\begin{aligned} & \quad \\
+  & x = r \\ 
+  & y = 0 \end{aligned}$ for $r>0$.  So $x>0$ and $y=0$.  If $r=0$, then $(x,y)=(0,0)$.  Thus
+\[
+\varphi_{\text{pol}}^{-1}( [0,\infty) \times [0,2\pi)-V) = \lbrace (x,y) | x\geq 0 \text{ and } y=0 \rbrace
+\]
+(If you have trouble seeing this, think of the union of the cases when $r=0$ or when $\varphi=0$).  Thus
+\[
+\varphi^{-1}_{\text{pol}}(V) = \lbrace (x,y) | x<0 \text{ or } y \neq 0 \rbrace
+\]
+
+Thus, in summary, we can include this chart into atlas $\mathcal{A}$:
+
+\begin{equation} \label{Eq:UR2}
+\begin{gathered}
+  (U, \varphi_{\text{pol}}) \in \mathcal{A} \\ 
+  \begin{aligned}
+    U & = \lbrace (x,y) | x<0 \text{ or } y \neq 0 \rbrace  \\
+    \varphi_{\text{pol}}(U) & = \lbrace (r,\varphi) | r >0, \varphi \in (0,2\pi) \rbrace
+\end{aligned} \quad \quad \, \begin{aligned}
+    & \varphi_{\text{pol}}:U \to \mathbb{R}^2 \\ 
+    & \varphi_{\text{pol}}(x,y) = ( \sqrt{x^2 + y^2}, \arctan{ \left( \frac{y}{x} \right) } \\ 
+    & \varphi^{-1}_{\text{pol}}: \varphi_{\text{pol}}(U) \to \mathbb{R}^2 \\ 
+    & \varphi^{-1}_{\text{pol}}(r,\varphi) = (r\cos{\varphi}, r\sin{\varphi}) = (x,y)
+\end{aligned}
+\end{gathered}
+\end{equation}
+If someone really wanted to, one can try to cover $\mathbb{R}^2$ with another polar coordinate chart, but I would argue that we already have the cartesian coordinate chart that singlely covers $\mathbb{R}^2$. Also note that the transition map between polar coordinate charts and the cartesian coordinate chart is easy, since the cartesian chart is the identity.  
+
+\section{$\mathbb{R}^3$}
+
+Consider the spherical coordinates
+\begin{equation}\label{Eq:R3sphericalcoordinates}
+\begin{aligned}
+  & x = r\sin{\theta} \cos{\varphi} \\ 
+   & y = r\sin{\theta} \sin{\varphi} \\ 
+  & z = r\cos{\theta}
+\end{aligned}
+\end{equation}
+We seek to construct a chart and open subset/domain for these spherical coordinates.  So consider, in parallel, following closely the discussion above for $\mathbb{R}^2$, 
+\[
+\begin{gathered}
+\begin{aligned}
+  & \varphi_{\text{sph}}^{-1} : V \subset \mathbb{R}^3 \to \mathbb{R}^3 \\ 
+  & \varphi^{-1}_{\text{sph}}:(r,\theta, \varphi) \mapsto (x,y,z) \\ 
+  & V:= \lbrace (r,\theta,\varphi) \in \mathbb{R}^3 | r>0, \theta \in (0,\pi), \varphi \in (0,2\pi) \rbrace \\
+  & \varphi_{\text{sph}}^{-1}([0,\infty) \times [0,\pi) \times [0,2\pi) ) = \mathbb{R}^3 (\text{ once over })
+\end{aligned}  \\
+[0,\infty) \times [0,\pi) \times [0,2\pi) - V = \lbrace (r,\theta, \varphi) | r= 0 \text{ or } \theta = 0 \text{ or } \varphi = 0 \rbrace
+\end{gathered}
+\]
+Now if $\varphi=0$, $\begin{aligned} & \quad \\ 
+  & x = r\sin{\theta}\\
+  & y = 0 \\
+  & z = r \cos{\theta} \end{aligned}$, and if $\theta =0$, $\begin{aligned} & \quad \\
+  & x = 0 \\
+  & y = 0 \\
+  & z = r \end{aligned}$, for $r>0$ and $\theta \in (0,\pi)$.  
+
+Thus,
+\[
+\begin{gathered}
+  \varphi^{-1}_{\text{sph}}([0,\infty) \times [0,\pi) \times [0,2\pi) - V) = \lbrace (x,y,z) | y=0 \text{ and } x \geq 0 \rbrace \\ 
+        \varphi^{-1}_{\text{sph}}(V) = \lbrace (x,y,z) | y \neq 0 \text{ or } x < 0 \rbrace 
+\end{gathered}
+\]
+
+So, in summary, 
+\begin{equation} \label{Eq:UsphericalR3}
+\begin{gathered}
+  (U, \varphi_{\text{sph}}) \in \mathcal{A} \text{ with } \\
+  \begin{aligned}
+    U & = \lbrace ( x,y,z) | x < 0 \text{ or } y \neq 0 \rbrace \\
+    \varphi_{\text{sph}}(U) & = \lbrace (r, \theta,\varphi) | r>0 , \theta \in (0,\pi), \varphi \in (0,2\pi) \rbrace
+\end{aligned} \quad \quad \, \begin{aligned}
+    & \varphi_{\text{sph}} : U \to \mathbb{R}^3 \\ 
+    & \varphi_{\text{sph}}(x,y,z) = ( \sqrt{ x^2 + y^2 + z^2 }, \arctan{ \left( \frac{ \sqrt{ x^2 + y^2}}{z} \right) }, \arctan{ \left( \frac{y}{x} \right) } ) \\ 
+    & \varphi_{\text{sph}}^{-1} : \varphi_{\text{sph}}(U) \to \mathbb{R}^3 \\ 
+    & \varphi_{\text{sph}}^{-1}(r,\theta,\varphi) = (r\sin{\theta} \cos{\varphi}, r\sin{\theta} \sin{\varphi}, r\cos{\theta} )
+\end{aligned}
+\end{gathered}
+\end{equation}
+
+Consider another chart for \emph{cylindrical} coordinates for $\mathbb{R}^3$:
+\begin{equation}\label{Eq:R3cylindricalcoordinates}
+\begin{aligned}
+  & x = r\cos{\varphi} \\ 
+  & y = r\sin{\varphi} \\ 
+  & z = z
+\end{aligned}
+\end{equation}
+Following a similar procedure as above, let
+\[
+\begin{aligned}
+  & \varphi_{\text{cyl}}^{-1} : V \subseteq \mathbb{R}^3 \to \mathbb{R}^3 \\ 
+  & \varphi_{\text{cyl}}^{-1}:(r,\varphi,z) \mapsto (x,y,z) = (r\cos{\varphi},r\sin{\varphi},z)\\ 
+  & \varphi_{\text{cyl}}^{-1}([0,\infty)\times [0,2\pi) \times \mathbb{R}) = \mathbb{R}^3 \quad \, \text{ (once over) } \\ 
+      & V := \lbrace (r,\varphi,z) \in \mathbb{R}^3 | r>0 , \, \varphi \in (0,2\pi), \, z \in \mathbb{R} \rbrace
+\end{aligned}
+\]
+and so
+\[
+[0,\infty) \times [0,\pi) \times \mathbb{R} - V = \lbrace (r, \varphi,z) | r=0 \text{ or } \varphi =0 \rbrace 
+\]
+if $\varphi =0$, $\begin{aligned} & \quad \\
+  & x = r \\
+  & y = 0 \\
+  & z = z \end{aligned}$, for $r>0$.  
+
+Thus
+\[
+\varphi^{-1}_{\text{cyl}}([0,\infty) \times [0, 2\pi ) \times \mathbb{R} - V) = \lbrace (x,y,z) | y=0\text{ and } x \geq 0 \rbrace
+\]
+and so 
+\begin{equation} \label{Eq:UcylindricalR3}
+\begin{gathered}
+  (U,\varphi_{\text{cyl}}) \in \mathcal{A} \text{ with } \\ 
+  U = \lbrace (x,y,z) | y \neq 0 \text{ or } x <0 \rbrace \\ 
+  \varphi_{\text{cyl}}(x,y,z) = ( \sqrt{ x^2 + y^2} , \arctan{ \left( \frac{y}{x} \right) }, z )
+\end{gathered}
+\end{equation}
+
+\section{$\mathbb{R}^n$}
+
+For ``spherical coordinates'' of $\mathbb{R}^n$, 
+\begin{equation}\label{Eq:Rnsphericalcoordinates}
+\begin{aligned}
+  & x_1  = r\sin{(\theta_1)} \dots \sin{(\theta_{n-2})} \cos{(\phi)} \\ 
+  & x_2 = r\sin{(\theta_1)} \dots \sin{(\theta_{n-2}) } \sin{(\phi) } \\ 
+  & x_3 = r\sin{ (\theta_1)} \dots \sin{ (\theta_{n-3} ) }\cos{(\theta_{n-2}) } \\ 
+  & x_4 = r\sin{ (\theta_1)} \dots \sin{ (\theta_{n-4} ) }\cos{(\theta_{n-3}) } \\ 
+  & \vdots \\ 
+  & x_{n-1} = r\sin{(\theta_1)} \cos{(\theta_2) } \\ 
+  & x_n = r\cos{(\theta_1)}
+\end{aligned}
+\end{equation}
+Consider $V = \lbrace (r, \theta_1 \dots \theta_{n-2}, \phi) | r>0 , \theta_1 , \theta_2, \dots \theta_{n-2} \in (0,\pi) , \phi \in (0,2\pi) \rbrace$.  
+
+Now for $\theta_i =0$, $i\in 1 \dots n-2$, $x_1 = x_2 = \dots = x_{n-i} = 0$.  \\
+\phantom{Now } for $\phi=0$, $x_2=0$, $x_1 >0$, since $\theta_i \in (0,\pi)$ \, $\forall \, i \in 1 \dots n-2$.
+
+So let 
+\[
+V = \lbrace (x_1 \dots x_n) | x_2 = 0 \text{ and } x_1 \geq 0 \rbrace
+\]
+and so
+\begin{equation}\label{Eq:UsphericalRn}
+U = \lbrace (x_1 \dots x_n) | x_2 \neq 0 \text{ or } x_1 < 0 \rbrace
+\end{equation}
+and we have chart (homeomorphism)
+\[
+\begin{aligned}
+  & \varphi_{\text{sph}}: U \to \mathbb{R}^n \\ 
+  & \begin{gathered} \varphi_{\text{sph}}(x_1 \dots x_n) = ( \sqrt{ x_1^2+\dots +x_n^2},  \\
+  \arctan{\left( \frac{\sqrt{ x_1^2 + \dots +x^2_{n-1}}}{ x_n} \right) },\arctan{ \left( \frac{\sqrt{x_1^2 + \dots + x_{n-2}^2}}{x_{n-1}} \right)}, \dots \arctan{\left( \frac{\sqrt{x_1^2 + x_2^2}}{x_3} \right)}, \arctan{\left( \frac{x_2}{x_1} \right) } ) \end{gathered}
+\end{aligned}
+\]
+
+For ``cylindrical coordinates'' of $\mathbb{R}^n$, with coordinate $x_n$ being a parameter of each ``sphere'', 
+\begin{equation}\label{Eq:Rncylindricalcoordinates}
+\begin{aligned}
+  & x_1 = r\sin{(\theta_1)} \dots \sin{(\theta_{n-3})} \cos{(\phi)} \\ 
+  & x_2 = r\sin{(\theta_1)} \dots \sin{(\theta_{n-3})} \sin{(\phi)} \\ 
+  & x_3 = r\sin{(\theta_1)} \dots \sin{(\theta_{n-4})} \cos{(\theta_{n-3})} \\ 
+  & x_4 = r\sin{(\theta_1)} \dots \sin{(\theta_{n-5})} \cos{(\theta_{n-4})} \\
+  & \vdots \\ 
+  & x_{n-2} = r\sin{(\theta_1)}\cos{(\theta_2)} \\ 
+  & x_{n-1} = r\cos{(\theta_1)} \\ 
+  & x_n = x_n
+\end{aligned}
+\end{equation}
+If $\theta_i =0$, \, $i \in 1\dots n-3$, $x_1 = x_2 = \dots = x_{n-1-i} = 0$.  
+
+If $\phi =0$, $x_2=0$.  
+
+For $V = \lbrace (r,\theta_1 \dots \theta_{n-3}, \phi, z) | r \in (0,\infty), \, \theta_i \in (0,\pi) \, \forall \, i \in 1, \dots n-3, \, \phi \in (0,2\pi), \, z \in \mathbb{R} \rbrace$,
+\[
+\varphi_{\text{cyl}}^{-1}([0,\infty) \times [0,\pi) \dots \times [0,\pi) \times [0,2\pi) \times \mathbb{R}  -V) = \lbrace (x_1 \dots x_n) | x_2 = 0 \text{ and } x_1 \geq 0 \rbrace
+\]
+For if $\phi = 0$, $x_2=0$, and $x_1(\varphi =0) = r\sin{(\theta_1)} \dots \sin{(\theta_{n-3})} >0 $ for $\theta_1 \dots \theta_{n-3} \in (0,\pi)$.  
+
+Thus,
+\begin{equation}\label{Eq:UcylindricalRn}
+\varphi_{\text{cyl}}^{-1}(V) = \lbrace (x_1 \dots x_n) | x_2 \neq 0 \text{ or } x_1 < 0 \rbrace =: U_{\text{cyl}}
+\end{equation}
+and the chart is 
+\[
+\begin{gathered}
+  \varphi_{\text{cyl}} : U \to \mathbb{R}^n \\ 
+\begin{gathered}
+  \varphi_{\text{cyl}}(x_1 \dots x_n) = ( \sqrt{ x_1^2 + \dots + x^2_{n-1} }, \\
+  \arctan{ \left( \frac{\sqrt{ x_1^2 + \dots + x_{n-2}^2}}{x_{n-1}} \right) } , \arctan{ \left( \frac{\sqrt{ x_1^2 + \dots + x_{n-3}^2}}{x_{n-2}}  \right) } , \dots \arctan{ \left( \frac{ \sqrt{ x_1^2 + x_2^2 } }{ x_3} \right)} , \arctan{ \left( \frac{x_2}{x_1} \right) }, x_n )
+\end{gathered}
+\end{gathered}
+\]
+
+\subsubsection{Sage Math, sagemanifolds, implementation}
+
+As described above, with our chart constructions for spherical (or polar for 2-dimensions) and cylindrical coordinates, the Euclidean spaces $\mathbb{R}^2$, $\mathbb{R}^3$, and $\mathbb{R}^n$, in general, (for instance, say $n=4$), can be implemented in Sage Math, using the \verb|sagemanifolds| package.  This implementation is given in \href{https://github.com/ernestyalumni/Gravite/blob/master/Rn.sage}{Rn.sage} of the github repository \href{https://github.com/ernestyalumni/Gravite}{Gravite}.  
+
+What \verb|Rn.sage| provides are Python classes so that one can create automatically or \emph{instantiate} Euclidean spaces as a manifold, and the ``usual'' atlas with charts for spherical and/or cylindrical coordinates.  It was coded (you should be welcomed to take a look at the code directly) to follow precisely the logic of the above developments, e.g. the open subset $U$ in Equations \ref{Eq:UR2}, \ref{Eq:UsphericalR3}, \ref{Eq:UcylindricalR3}, \ref{Eq:UsphericalRn}, \ref{Eq:UcylindricalRn} is written into the code for the classes that represent the Euclidean spaces as such:
+\begin{lstlisting}
+class R2(object):
+      def __init__(self):
+        self.M = Manifold(2,'R2',r'\mathbb{R}^2',start_index=1)
+        self.cart_ch = self.M.chart('x y')
+        self.U       = self.M.open_subset('U',coord_def={self.cart_ch: (self.cart_ch[1]<0, self.cart_ch[2]!=0)})
+
+class R3(object):
+      def __init__(self):
+        self.M = Manifold(3,'R3',r'\mathbb{R}^3',start_index=1)
+        self.cart_ch = self.M.chart('x y z')
+        self.U = self.M.open_subset('U',coord_def={self.cart_ch: (self.cart_ch[1]<0, self.cart_ch[2]!=0)})
+
+class Rn(object):
+      def __init__(self,n):
+        assert n>0
+        if n == 2:
+          print ``Use the class R2''
+        elif n == 3:
+          print ``Use the class R3''
+        else:
+          self.M = Manifold(n,'R'+str(n),r'\mathbb{R}^'+str(n),start_index=1)
+          self.cart_ch = self.M.chart(r'' ``.join([r''x''+str(i) for i in range(1,n+1)]))
+          xis = [self.cart_ch[i[0]] for i in self.M.index_generator(1)]
+          self.U = self.M.open_subset('U',coord_def={self.cart_ch:(xis[0]<0,xis[1]!=0)})
+\end{lstlisting}
+so that the ``spirit'' in coding up \verb|Rn.sage| is to follow the (abstract) math developed above closely and exactly, if possible.  
+
+Now, for instance, to implement 
+\[
+\begin{aligned}
+  & (\mathbb{R}^2, \mathcal{A}_{\mathbb{R}^2} ) \qquad & \mathcal{A}_{\mathbb{R}^2} = \lbrace ( \mathbb{R}^2, \varphi_{\text{cart}} \equiv x^i ), (U,\varphi_{\text{pol}} \equiv \varphi_{\text{sph}} ) \rbrace \\ 
+  & (\mathbb{R}^3, \mathcal{A}_{\mathbb{R}^3} ) \qquad & \mathcal{A}_{\mathbb{R}^3} = \lbrace (\mathbb{R}^3, x^i ), (U,\varphi_{\text{sph}} ), (U,\varphi_{\text{cyl}}) \rbrace  \\ 
+  & (\mathbb{R}^n, \mathcal{A}_{\mathbb{R}^n} ) \qquad & \mathcal{A}_{\mathbb{R}^n} = \lbrace (\mathbb{R}^n, x^i ), (U,\varphi_{\text{sph}} ), (U,\varphi_{\text{cyl}}) \rbrace  
+\end{aligned}
+\]
+one does, after loading the file, which is assumed to be in the working directory for Sage (simply \verb|cd| or change directory into it) into Sage Math
+\begin{lstlisting}
+sage: load(``Rn.sage'')
+sage: R2eg = R2()
+sage: R3eg = R3()
+sage: R4 = Rn(4)
+\end{lstlisting}
+
+Indeed, the coordinate transformations in Equations \ref{Eq:R2polarcoordinates}, \ref{Eq:R3sphericalcoordinates}, \ref{Eq:R3cylindricalcoordinates}, \ref{Eq:Rnsphericalcoordinates}, \ref{Eq:Rncylindricalcoordinates} are implemented with this file \verb|Rn.sage| as follows:
+\begin{lstlisting}
+sage: R2eg.transit_sph_to_cart.display()
+x = r*cos(ph)
+y = r*sin(ph)
+sage: R3eg.transit_sph_to_cart.display()
+x = rh*cos(ph)*sin(th)
+y = rh*sin(ph)*sin(th)
+z = rh*cos(th)
+sage: R3eg.transit_cyl_to_cart.display()
+x = r*cos(phi)
+y = r*sin(phi)
+z = zc
+sage: R4.transit_sph_to_cart.display()
+x1 = rh*cos(ph)*sin(th1)*sin(th2)
+x2 = rh*sin(ph)*sin(th1)*sin(th2)
+x3 = rh*cos(th2)*sin(th1)
+x4 = rh*cos(th1)
+sage: R4.transit_cyl_to_cart.display()
+x1 = r*cos(phi)*sin(the1)
+x2 = r*sin(phi)*sin(the1)
+x3 = r*cos(the1)
+x4 = z
+\end{lstlisting}
+
+I would welcome readers at any point to open up \verb|Rn.sage| and play with the code and to run it in Sage Math and to explore the methods associated with the classes; I use command \verb|dir()|.  I want to point out that the \emph{Jacobian} for the coordinate changes can be obtained easily by the following:
+\begin{lstlisting}
+sage: to_orthonormal2, e2, Jacobians2 = R2eg.make_orthon_frames(R2eg.sph_ch)
+sage: Jacobians2[0].inverse()[:,R2eg.sph_ch]
+[   cos(ph) -r*sin(ph)]
+[   sin(ph)  r*cos(ph)]
+sage: to_orthonormal3sph, e3sph, Jacobians3sph = R3eg.make_orthon_frames(R3eg.sph_ch)
+sage: to_orthonormal3cyl, e3cyl, Jacobians3cyl = R3eg.make_orthon_frames(R3eg.cyl_ch)
+sage: Jacobians3sph[0].inverse()[:,R3eg.sph_ch]
+[    cos(ph)*sin(th)  rh*cos(ph)*cos(th) -rh*sin(ph)*sin(th)]
+[    sin(ph)*sin(th)  rh*cos(th)*sin(ph)  rh*cos(ph)*sin(th)]
+[            cos(th)         -rh*sin(th)                   0]
+sage: Jacobians3cyl[0].inverse()[:,R3eg.cyl_ch]
+[   cos(phi) -r*sin(phi)           0]
+[   sin(phi)  r*cos(phi)           0]
+[          0           0           1]
+sage: to_orthonormal4sph, e4sph, Jacobians4sph = R4.make_orthon_frames(R4.sph_ch)
+sage: to_orthonormal4cyl, e4cyl, Jacobians4cyl = R4.make_orthon_frames(R4.cyl_ch)
+sage: Jacobians4sph[0].inverse()[:,R4.sph_ch]
+[    cos(ph)*sin(th1)*sin(th2)  rh*cos(ph)*cos(th1)*sin(th2)  rh*cos(ph)*cos(th2)*sin(th1) -rh*sin(ph)*sin(th1)*sin(th2)]
+[    sin(ph)*sin(th1)*sin(th2)  rh*cos(th1)*sin(ph)*sin(th2)  rh*cos(th2)*sin(ph)*sin(th1)  rh*cos(ph)*sin(th1)*sin(th2)]
+[            cos(th2)*sin(th1)          rh*cos(th1)*cos(th2)         -rh*sin(th1)*sin(th2)                             0]
+[                     cos(th1)                  -rh*sin(th1)                             0                             0]
+sage: Jacobians4cyl[0].inverse()[:,R4.cyl_ch]
+[   cos(phi)*sin(the1)  r*cos(phi)*cos(the1) -r*sin(phi)*sin(the1)                     0]
+[   sin(phi)*sin(the1)  r*cos(the1)*sin(phi)  r*cos(phi)*sin(the1)                     0]
+[            cos(the1)          -r*sin(the1)                     0                     0]
+[                    0                     0                     0                     1]
+\end{lstlisting}
+As one can see, the Jacobian for the coordinate changes in Equations \ref{Eq:R2polarcoordinates}, \ref{Eq:R3sphericalcoordinates}, \ref{Eq:R3cylindricalcoordinates}, \ref{Eq:Rnsphericalcoordinates}, \ref{Eq:Rncylindricalcoordinates} was calculated (stop doing it by hand!).  
+
+
+
+
+\subsubsection{Euclidean metric $g$}
+
+We'd want to now equip our Euclidean space as a smooth manifold with the usual Euclidean metric $g$, which exists (or is valid) everywhere (i.e. globally) on the manifold.  Thus, we can think of the Euclidean space as a triple (with the standard topology $\mathcal{O}_{\text{std}}$ simply assumed and implicit):
+\[
+\begin{aligned}
+  & (\mathbb{R}^2, \mathcal{A}_{\mathbb{R}^2}, g) \\ 
+  &  (\mathbb{R}^3, \mathcal{A}_{\mathbb{R}^3}, g) \\ 
+  &  (\mathbb{R}^n, \mathcal{A}_{\mathbb{R}^n}, g) 
+\end{aligned}
+\]
+This is precisely implemented in Sage Math, using the \verb|sagemanifolds| package, as follows:
+\begin{lstlisting}
+sage: R2eg.equip_metric()
+sage: R3eg.equip_metric()
+sage: R4.equip_metric()
+\end{lstlisting}
+
+\subsection{Orthonormal coordinates, orthonormal (basis) vectors, and their problems}
+
+Coordinate basis vectors, $\frac{\partial}{\partial x^i} \in \mathfrak{X}(U)$ that live on the chart domain $U$ of chart $(U,\varphi) \in \mathcal{A}_M$ of a smooth manifold, need to be carefully distinguished from so-called orthonormal or orthogonal coordinates and their orthonormal basis vectors, $\mathbf{e}_i$.  This becomes problematic because most of us have grown up, with physics and engineering textbooks, with orthonormal basis vectors $\mathbf{e}_i$ such as Cartesian basis vectors $\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z$, cylindrical basis vectors $\mathbf{e}_r,\mathbf{e}_{\varphi}, \mathbf{e}_z$, and spherical basis vectors $\mathbf{e}_{\rho}, \mathbf{e}_{\theta}, \mathbf{e}_{\phi}$ without understanding how they are related to the metric on a manifold.  
+
+I'm not sure why textbooks I've read doesn't touch upon the difference between (local) coordinate basis vectors and orthonormal basis vectors more explicitly and lucidly.  Frankel (2004) \cite{TFrankel2004} touches upon this issue in Problem 2.1(2) of Chapter 2, calling the components of a vector field in these orthonormal basis vectors ``physical'' components.  Bertschinger in his lectures notes for MIT Physics 8.962 Spring 1999 calls them ``orthonormal non-coordinate bases'' in Section 3.7 Example: Euclidean plane of ``Introduction to Tensor Calculus for General Relativity'' \footnote{Edmund Bertschinger. MIT Physics 8.962 Spring 1999,  Introduction to Tensor Calculus for General Relativity \href{http://web.mit.edu/edbert/GR/gr1.pdf}{gr1.pdf}}.  But from the manifold point of view, these non-coordinate bases seem to obfuscate what the components of a vector field should be.  
+
+We can agree upon a curve $\gamma$, $\begin{aligned} & \quad \\
+  & \gamma:\mathbb{R} \to M \\
+  & \gamma(\lambda) \in M, \, \lambda \in \mathbb{R} \end{aligned}$, parametrized by $\lambda \in \mathbb{R}$ on the manifold, and it can be shown from a theorem in Lee (2012) \cite{JMLee2012} (from essentially existence and uniqueness theorems for ordinary differential equations), that there exists vector field $u\in\mathfrak{X}(M)$ such that $u(\lambda) = \dot{\gamma}(\lambda)$.  
+
+Schuller (2015) \footnote{Frederic P. Schuller. ``Lecture 10: Metric Manifolds (International Winter School on Gravity and Light 2015)''.  \emph{The WE-Heraeus International Winter School on Gravity and Light}. \url{https://youtu.be/ONCZNwKswn4}} defines the \emph{speed} $s(\lambda)$ to be
+\[
+s(\lambda) := \sqrt{g(u,u)}
+\]
+Furthermore, Schuller argues, by equipping the manifold with a metric, that $s(\lambda)$ carries the physical value of speed with units $\frac{[L]}{[T]}$, with $L$ representing the physical dimensional unit for length, and $T$ representing the physical dimensional unit for time.  
+
+Consider $M=\mathbb{R}^2$ and the vector field on $U \subset \mathbb{R}^2$, $\frac{\partial}{ \partial \varphi} \in \mathfrak{X}(\mathbb{R}^2)$.  Now
+\[
+\begin{gathered}
+  g\left( \frac{ \partial }{ \partial \varphi}, \frac{ \partial }{ \partial \varphi } \right) = g_{\varphi \varphi } = r^2
+  \Longrightarrow s(\lambda) =r 
+\end{gathered}
+\]
+Clearly $s(\lambda)=r$ carries the physical dimension of length, represented by $r$.  However, prior, $\frac{ \partial }{ \partial \varphi}$ makes no connection with the metric $g$ of $\mathbb{R}^2$.  So, prior, the (local) coordinate basis vectors carry no physical dimensions.  
+
+However, consider these non-coordinate basis vectors for $\mathbb{R}^2$:
+\[
+\begin{aligned}
+  & \mathbf{e}_r = \frac{ \partial }{ \partial r } \\ 
+  & \mathbf{e}_{\varphi} = \frac{1}{r} \frac{ \partial }{ \partial \varphi }
+\end{aligned}
+\]
+%with $\mathbf{e}_r, \mathbf{e}_{\varphi} \in \mathfrak{X}(U\subset \mathbb{R}^2)$.  
+
+Now 
+\[
+\begin{aligned}
+  & g(\mathbf{e}_r,\mathbf{e}_r)  =1 \\ 
+  & g(\mathbf{e}_{\varphi},\mathbf{e}_{\varphi}) = 1
+\end{aligned}
+\]
+and so the speed, for instance, of a curve flowing along the orthonormal vector $\mathbf{e}_{\varphi}$ would be 
+\[
+s(\lambda) = \sqrt{ g(\mathbf{e}_{\varphi}, \mathbf{e}_{\varphi})}
+\]
+and so $\mathbf{e}_r, \mathbf{e}_{\varphi}$ have a norm of $1$ with respect to the metric $g$ and can be considered as ``unit vectors'' since the speed, while flowing along them, $s(\lambda)$ is $1$.  
+
+On the other hand, I would argue that using these non-coordinate basis vectors is complicated because we'll have to define them, in general, as such:
+\begin{equation}
+  \mathbf{e}_i := \frac{1}{ \sqrt{ g(\frac{ \partial }{ \partial x^i}, \frac{ \partial }{ \partial x^i} ) } } \frac{ \partial }{ \partial x^i } = \frac{1}{\sqrt{g_{ii}}} \frac{ \partial }{ \partial x^i}
+\end{equation}
+The non-coordinate basis vectors are dependent upon the metric and it's unclear if $\mathbf{e}_i \in \mathfrak{X}(M)$. Possibly, one could say that it is a valid vector field on the valid domain if $g$ is valid on there.  
+
+Nevertheless, these orthonormal non-coordinate basis vectors are implemented in \verb|Rn.sage| with the method \verb|.make_orthon_frames| for each of the classes \verb|R2,R3,Rn|.  One runs or instantiates the method and the second output is the new orthonormal frame.  Thus, the orthonormal frame or orthonormal non-coordinate basis vectors are calculated:
+\begin{lstlisting}
+sage: e2[1].display( R2eg.sph_ch.frame(), R2eg.sph_ch)
+e_1 = d/dr
+sage: e2[2].display( R2eg.sph_ch.frame(), R2eg.sph_ch)
+e_2 = 1/r d/dph
+sage: for i in range(1,3+1):
+....:     e3sph[i].display( R3eg.sph_ch.frame(), R3eg.sph_ch )
+....:     
+e_1 = d/drh
+e_2 = 1/rh d/dth
+e_3 = 1/(rh*sin(th)) d/dph
+sage: for i in range(1,3+1):
+    e3cyl[i].display( R3eg.cyl_ch.frame(), R3eg.cyl_ch )
+....:     
+e_1 = d/dr
+e_2 = 1/r d/dphi
+e_3 = d/dzc
+sage: for i in range(1,4+1):
+    e4sph[i].display( R4.sph_ch.frame(), R4.sph_ch )
+....:     
+e_1 = d/drh
+e_2 = 1/rh d/dth1
+e_3 = 1/(rh*sin(th1)) d/dth2
+e_4 = 1/(rh*sin(th1)*sin(th2)) d/dph
+sage: for i in range(1,4+1):
+    e4cyl[i].display( R4.cyl_ch.frame(), R4.cyl_ch )
+....:     
+e_1 = d/dr
+e_2 = 1/r d/dthe1
+e_3 = 1/(r*sin(the1)) d/dphi
+e_4 = d/dz
+\end{lstlisting}
+
+
 \end{multicols*}
 
 \begin{thebibliography}{9}
@@ -3926,8 +4393,15 @@ Klaus Jänich (Author), S. Levy (Translator), \textbf{Topology} (Undergraduate T
 
 ISBN-13: 978-0387908922
 
-\bibitem{JMLee2010}
-John M. Lee.  \textbf{Introduction to Smooth Manifolds}.  2010. Springer.   ISBN-10: 0-387-95495-3 (hardcover), ISBN-13: 978-0387-95448-6  \\
+\bibitem{JMLee2012}
+John M. Lee.  \textbf{Introduction to Smooth Manifolds}.  2012. Springer.   ISBN-10: 0-387-95495-3 (hardcover), ISBN-13: 978-0387-95448-6  \\
+
+\bibitem{TFrankel2004}
+T. Frankel,
+\textbf{The Geometry of Physics}, 
+Cambridge University Press, 
+Second Edition,
+2004.
 
 
 
