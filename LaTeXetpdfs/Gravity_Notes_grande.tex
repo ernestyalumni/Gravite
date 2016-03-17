@@ -480,7 +480,324 @@ Clearly
 \]
 and (the point is that) $x_{\pm},y_{\pm}$ are homeomorphisms of open sets of $F^1$ onto open sets of 1 dim. $\mathbb{R}^1$ (namely $(-1,1) \subseteq \mathbb{R}^1$), and so $\mathcal{A}$ is an atlas of $F^1$.  
 
-\section{}
+\section{Lecture 3: Multilinear Algebra}
+
+\href{https://youtu.be/mbv3T15nWq0}{Lecture 3: Multilinear Algebra (International Winter School on Gravity and Light 2015)}
+
+We will \textbf{not} equip space(time) with a vector space structure.  Do you know where 
+\[
+\begin{gathered} 5 \cdot \text{ Paris } = ? \\
+  \text{ lie ? } \end{gathered}
+  \qquad \, \text{ Paris } + \text{ Vienna } = ?
+\]
+Moreover, the tangent spaces $T_pM$ (lecture 5) smooth manifolds (Lecture 4)
+
+Beneficial to first study vector spaces abstractly for two reason 
+\begin{enumerate}
+\item[(i)] for construction of $T_pM$ one needs an intermediate vector space $C^{\infty}(M)$
+\item[(ii)] tensor technique are most easily understood in an abstract setting.  
+\end{enumerate}
+
+\subsection{Vector spaces}
+
+\begin{definition} A vector space $(V,+,-)$ is 
+\begin{enumerate}
+  \item[(i)] a set $V$
+  \item[(ii)] $+ : V\times V \to V$ \qquad ``addition''
+  \item[(iii)] $\cdot : \mathbb{R} \times V \to V$ \qquad  ``s-multiplication'' EY : 20160317 s for ``scalar''
+\end{enumerate}
+satisfying: \\
+
+CANIADDU
+
+\[
+\begin{aligned}
+ C^+ : & \qquad v+w = w+v \\
+A^+ : & \qquad (u+v)+w = u+(v+w) \\ 
+N^+ : & \qquad \exists \, 0 \in V : \forall \, v \in V : v+ 0 = v \\
+I^+ : & \qquad \forall \, v \in V : \exists \, (-v) \in V: v + (-v) = 0  \\
+A : & \qquad \lambda \cdot (\mu + v) = (\lambda \cdot \mu)\cdot v \qquad \qquad \, (\forall \, \lambda , \mu \in \mathbb{R} ) \\ 
+D : &  \qquad (\lambda + \mu ) \cdot v = \lambda \cdot v + \mu \cdot v \\
+D : &  \qquad \lambda \cdot v + \lambda \cdot w = \lambda \cdot (v+w)  \\ 
+U : &  \qquad 1 \cdot v = v 
+\end{aligned}
+\]
+\end{definition}
+\subsubsection*{Terminology} An element of a vector space is often referred to, informally as a vector.  
+
+\subsubsection*{Example}
+\emph{def}. \textbf{set} of polynomials (fixed) degree $\mathcal{P} := \lbrace p :(-1,+1) \to \mathbb{R} | p(x) = \sum_{n=0}^N p_n \cdot x^n \rbrace$
+
+Thought bubble: is $\square $ a vector?  \\
+\phantom{Thought bubble}$\square(x) = x^2$
+
+No $\square \in \mathcal{P}$.
+
+$\begin{aligned} +:  & \mathcal{P} \times \mathcal{P} \to \mathcal{P} \\
+  & (p,q) \mapsto p+q \end{aligned}$  \\
+where $(p+q)(x) = p(x) +_{\mathbb{R}} q(x)$
+
+$\begin{aligned} 
+  \cdot : & \mathbb{R} \times \mathcal{P} \to \mathcal{P} \\
+  & (\lambda, p) \mapsto \lambda \cdot p \end{aligned}$ \\
+where $(\lambda \cdot p)(x) := \lambda \cdot_{\mathbb{R}} p(x)$
+
+Thought bubble: $\square$ a vector?  \qquad \, Yes, but who cares?
+
+$(\mathcal{P}, + ,\cdot )$ is a vector space.   \\
+$\square \in \mathcal{P}$
+
+\subsection{Linear maps}
+
+These are the structure-respecting maps between vector spaces.  
+
+EY : 20160316 out of tradition, they're called ``linear'' maps
+
+\begin{definition}
+  $(V,+_V,\cdot_V)$ and $(W,+_W,\cdot_W)$ vector spaces \\
+Then a map
+\[
+\varphi : V \to W 
+\]
+is called \textbf{linear} if 
+\begin{enumerate}
+  \item[(i)] $\varphi(v+_V \widetilde{v}) = \varphi(v) +_W \varphi(\widetilde{v}) $  
+  \item[(ii)] $\varphi(\lambda \cdot_V v) = \lambda \cdot_W \varphi(v)$
+\end{enumerate}
+\end{definition}
+
+\subsubsection*{Example}:
+$\begin{aligned}
+  \delta : & \mathcal{P} \to \mathcal{P}  \\
+  & p \mapsto \delta(p) := p' \end{aligned}$
+
+\underline{linear}: \begin{enumerate}
+\item[(i)] $\delta(p+q) = (p+_{\mathcal{P}} q)' \underbrace{=}_{\text{sum rule }} p' +_{\mathcal{P}} q' = \delta(p) +_{\mathcal{P}} \delta(q) $
+\item[(ii)] $\delta(\lambda p) = (\lambda p)' = \lambda \cdot p'= \lambda \cdot \delta(p)$
+\end{enumerate}
+
+\underline{Notation}: $\varphi : V \to W$ linear $\Longleftrightarrow : \varphi : V \xrightarrow{ \sim } W$
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
+  {
+ V & W  & U   \\
+};
+  \path[->]  
+  (m-1-1) edge node [above] {$\psi$} (m-1-2)
+  edge node [below] {$\sim$} (m-1-2)
+          edge [bend right=40] node [below] {$\varphi\circ \psi $} (m-1-3)
+edge [bend right=40] node [above] {$\sim $} (m-1-3)
+  (m-1-2) edge node [above] {$\varphi $} (m-1-3)
+edge node [below] {$\sim $} (m-1-3);
+\end{tikzpicture}
+
+\subsubsection{Example*} $\delta \circ \delta : \mathcal{P} \xrightarrow{ \sim } \mathcal{P}$
+
+\subsection{Vector space of Homomorphisms}
+
+fun fact: $(V,+,\cdot)$ \, $(W,+,\cdot)$ vector spaces \\
+\qquad \emph{def.} $\text{Hom}(V,W) := \lbrace \varphi : V \xrightarrow{ \sim } W \rbrace$  \qquad set.
+
+We can make this into a vector spaces. 
+\[
+\begin{aligned}
+\oplus  :  &  \text{Hom}(V,W) \times \text{Hom}(V,W) \to \text{Hom}(V,W) \\ 
+& (\varphi, \psi) \mapsto \varphi \oplus \psi
+\end{aligned}
+\]
+where $(\varphi \otimes \psi )(v) := \varphi(v) +_W \psi(v)$
+
+$\otimes$ : $\dots$ similarly.  
+
+$(\text{Hom}(V,W), \oplus, \otimes)$ \textbf{is} a vector space.
+
+\subsubsection{Example*} $\text{Hom}(\mathcal{P},\mathcal{P})$ is a vector space.
+
+$\delta \in \text{Hom}(\mathcal{P},\mathcal{P})$ \\
+$\delta \circ \delta \in \text{Hom}(\mathcal{P},\mathcal{P})$ \\
+$\vdots$ \\
+$\underbrace{ \delta \circ \dots \circ \delta }_{ M} \in \text{Hom}(\mathcal{P}, \mathcal{P})$
+
+\[
+\Longrightarrow 5 \circ \delta \oplus_{\text{Hom}(\mathcal{P},\mathcal{P})} \delta \circ \delta \in \text{Hom}(\mathcal{P},\mathcal{P})
+\]
+
+\subsection{Dual vector space}
+
+heavily used special case: \\
+$(V,+,\cdot)$ vector space:  
+\begin{definition}
+\[
+V^* := \lbrace \varphi : V \xrightarrow{ \sim } \mathbb{R} \rbrace = \text{Hom}(V,\mathbb{R})
+\]
+$\underbrace{ (V^*, \oplus, \otimes) }_{\text{dual vector space (to $V$)}}$ is a vector space
+\end{definition}
+
+\underline{Terminology}: $\varphi \in V^*$ is called, informally, a covector.  
+
+\subsubsection*{Example} $I : \mathcal{P} \xrightarrow{ \sim} \mathbb{R}$ \\
+i.e. $I \in \mathcal{P}^*$
+
+\underline{def}. $I(p) := \int_0^1 dx p(x)$
+
+linear: $\begin{aligned}  I(p+q) & = \int_0^1 dx \underbrace{ ( p+q)(x) }_{p(x) + q(x)} \\
+  & = \dots = I(q) + I(p) \end{aligned}$
+
+$I(\lambda p) = \lambda \cdot I(p)$
+
+i.e. $I = \int_0^1 dx$
+
+\subsection{Tensors}
+
+\begin{definition}
+  Let $(V,+,\cdot)$ be a vector space. \\
+An \underline{ $(r,s)$-tensor $T$ over $V$ } \qquad \, $r,s \in \mathbb{N}_0 $\\
+is a multi-linera map
+\[
+T: \underbrace{ V^* \times \dots \times V^* }_r \times \underbrace{ V \times \dots \times V}_s \xrightarrow{ \substack{ \sim \\ \vdots \\ \sim } \rbrace r + s } \mathbb{R}
+\]
+\end{definition}
+
+\subsubsection{Example}: $T$ $(1,1)$-tensor
+\[
+\begin{aligned}
+  & T(\varphi + \psi, v) = T(\varphi,v) + T(\psi,v) \\ 
+  & T(\lambda \varphi , v) = \lambda \cdot T(\varphi,v)
+\end{aligned} \qquad \qquad \begin{gathered}
+T(\varphi,v+w) = T(\varphi,v) + T(\varphi,w) \\ 
+T(\varphi, \lambda \cdot v) = \lambda T(\varphi, v) 
+\end{gathered}
+\]
+\[
+\begin{gathered}
+  T(\varphi + \psi , v+ w)  = \\
+  = t(\varphi,v) + T(\varphi,w) + T(\psi,v) + t(\psi,w)
+\end{gathered}
+\]
+
+\underline{Excursion}:
+Given $T:V^* \times V \xrightarrow{ \sim } \mathbb{R}$
+
+Define $\begin{aligned} & \quad \ 
+   \phi_T: & V\xrightarrow{ \sim } (V*)^* \underbrace{=}_{\text{dim}V < \infty} V \\
+  & v\mapsto \underbrace{ T(\cdot , v)  }_{V^* \xrightarrow{ \sim } \mathbb{R}} \end{aligned}$
+
+Given $\phi : V \xrightarrow{ \sim } V$
+
+Construct $\begin{aligned} & \quad \\ 
+   T_{\phi} : & V^* \times V \xrightarrow{ \sim } \mathbb{R} \\
+   & (\varphi,v) \mapsto \varphi(\phi(v)) \end{aligned}$
+
+$\Longrightarrow $ given $T: T = T_{\varphi_T}$ \\
+\phantom{$\Longrightarrow$} given $\phi: \phi = \phi_{T_{\phi}}$
+
+\subsubsection*{Example} $\begin{aligned} & \quad \\
+  g: & P \times P \xrightarrow{ \sim } \mathbb{R} \\
+  & (p,q) \mapsto \int_{-1}^1 dx p(x) q(x) \end{aligned}$
+
+is a $(0,2)$-tensor over $P$.  
+
+\underline{Info}: If $T \in \text{Hom}(V,W)$
+
+\subsection{Vectors and covectors as tensors}
+
+\begin{theorem} (including proof)
+
+``covector''  $\varphi \in V^* \Longleftrightarrow \varphi : V \xrightarrow{ \sim } \mathbb{R} \Longleftrightarrow \varphi (0,1)$-tensor.  
+\end{theorem}
+
+\begin{theorem}
+$v\in V \underbrace{=}_{\text{dim}V<\infty} (V^*)^* \Longleftrightarrow v: V^* \xrightarrow{ \sim} \mathbb{R} \Longleftrightarrow v $ is $(1,0)$-tensor.  
+\end{theorem}
+
+\subsection{Bases}
+
+\begin{definition}
+  $(V,+,\cdot)$ vector space. \\
+A subset $B\subset V$ is called \\
+a basis if 
+
+Thought bubble: Hamel (L.A.) EY : 20160316 Hamel basis, Linear Algebra
+
+\[
+\forall \, v \in V \quad \, \exists \, \text{ \underline{ finite } } \, \underbrace{F}_{ \lbrace f_1 , \dots , f_n \rbrace }  \subset B : \exists \, ! \underbrace{ v^1, v^2 , \dots , v^n }_{ \in \mathbb{R} },  \qquad \, v = v^1 f_1 + \dots + v^n f_n 
+\]
+\end{definition}
+
+\begin{definition}
+  If $\exists \, $ basis $\mathcal{B}$ with finitely many elements, say $d$ many, then we call $d =:\text{dim}{V}$
+
+This is \underline{well-defined}.
+\end{definition}
+
+\underline{Remark}: $(V,+,\cdot)$ be a finite-dim. vector space.   \\
+Having chosen a basis $e_1, \dots, e_n$ of $(V,+,\cdot)$ we may uniquely associate
+
+(Thought bubble: this requires a chosen basis)
+\[
+v \mapsto (v^1 , \dots , v^n)  \text{ called the components of $v$ w.r.t. chosen basis }
+\]
+where: $v^1 e_1 + \dots + v^n e+n = v$
+
+\subsection{Basis for the dual space}
+
+choose Basis $e_1, \dots, e_n$ for $V$ \\
+can choose Basis $\epsilon^1, \dots , \epsilon^n$ for $V^*$
+
+However, more economical to require \\
+once $e_1 , \dots , e_n$ on $V$ has been chosen, that
+\[
+\epsilon^a(e_b) = \delta^a_b
+\]
+This uniquely determines choice of $\epsilon^1, \dots , \epsilon^n$ from choice of $e_1, \dots , e_n$
+
+\begin{definition}
+  If a basis $\epsilon^1, \dots , \epsilon^n$ of $V^*$ satisfies this, it is called \underline{the} \textbf{dual basis} (of the dual space)
+\end{definition}
+
+\underline{Example}: $P$ ($N=3$)
+
+$e_0, e_1, e_2, e_3$ basis if $\begin{aligned} & e_0(x) = 1 \\ 
+ & e_1(x) = x \\ 
+  & e_2(x) = x^2 \\ 
+  & e_3(x) = x^3 \end{aligned} \lbrace e_a(x):=x^a$
+
+$\epsilon^0, \epsilon^1, \epsilon^2, \epsilon^3$ dual basis $\epsilon^a := \frac{1}{a!} \left. \partial^a \right|_{x=0}$
+
+\begin{proof}
+  $\epsilon^a(e_b) = \delta^a_b$
+\end{proof}
+
+\subsection{Components of tensors}
+
+Let $T$ be an $(r,s)$-tensor on a finite-dim. vs. $V$.  Then define the $(r+s)^{\text{dim}V}$ many real numbers.  
+
+\[
+\underbrace{T^{i_1 \dots i_r}_{ \qquad \, j_1 \dots j_s} }_{\in \mathbb{R}} := T(\epsilon^{i_1}, \dots , \epsilon^{i_r} , e_{j_1} , e_{j_2}, \dots, e_{j_s} )
+\]
+$i_1 \dots i_r, j_1 \dots j_s \in \lbrace 1 , \dots , \text{dim}V \rbrace$
+
+Thought bubble: $\underbrace{T^{i_1 \dots i_r}_{ \qquad \, j_1 \dots j_s} }_{\in \mathbb{R}}$ are the \underline{components} of the tensor w.r.t. chosen basis
+
+\underline{Useful}: Knowing components (and basis) one can reconstruct the entire tensor.
+
+\subsubsection*{Example} $T \, (1,1)$- tensor
+\[
+T^i_{ \; \; j} := T(\epsilon^i, e_j)
+\]
+reconstruct \\
+$\begin{aligned} 
+T(\varphi,v) & =T(\sum_{i=1}^{\text{dim}{V}}\varphi_i \epsilon^i, \sum_{j=1}^{\text{dim}V} v^j e_j)   \qquad \, \varphi_i \in \mathbb{R}, v^j \in \mathbb{R} \\ 
+&  = \sum_{i=1}^{\text{dim}V} \sum_{j=1}^{\text{dim}{V}} \varphi_i v^j \underbrace{ T(\epsilon^i, e_j) }_{T^i_{ \; \; j}} \\
+  & =: \varphi_i v^j T^i_{ \; \; j}
+\end{aligned}$
+
+
+
+
+
+
 
 \section{Lecture 4: Differentiable Manifolds}
 
