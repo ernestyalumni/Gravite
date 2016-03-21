@@ -2,7 +2,7 @@
 % Me, working out the lectures, examples, and homework for the BEST VIDEO LECTURE SERIES on General Relativity and Gravity, ever:
 % WE Heraeus International Winter School on Gravity and Light
 %
-% MIT OCW (Massachusetts Institute of Technology Open CourseWare) for 8.962 Fall 2006, Kamiokowski's website, and various other places
+%x MIT OCW (Massachusetts Institute of Technology Open CourseWare) for 8.962 Fall 2006, Kamiokowski's website, and various other places
 % 
 % If you liked this this file or found it useful, please consider donating on my Tilt/Open 
 % campaign: I'd want to raise money for a new computer. 
@@ -2289,7 +2289,7 @@ Trivial rewritings:
 
 Yes, choosing $\begin{aligned} & \quad \\
   & \Gamma^0_{ \, \, ab} = 0 \\
-  & \Gamma^{\alpha}_{ \, \, \beta \gamma} = 0 =Gamma^{\alpha}_{\,\, 0\beta} = \Gamma^{\alpha}_{ \, \, \beta 0}\end{aligned}$
+  & \Gamma^{\alpha}_{ \, \, \beta \gamma} = 0 =\Gamma^{\alpha}_{\,\, 0\beta} = \Gamma^{\alpha}_{ \, \, \beta 0}\end{aligned}$
 
 \underline{only}: $\boxed{ \Gamma^{\alpha}_{ \, \, 00} \overset{!}{=} -f^{\alpha}}$
 
@@ -4693,6 +4693,260 @@ e_4 = d/dz
 \end{lstlisting}
 
 
+\part{My notes}
+
+Let's following Taubes (2011) \cite{CTaubes2011}.  
+
+\subsubsection{Torsion free covariant derivatives on $T^*M$ (Sec. 15.2 of Taubes (2011) \cite{CTaubes2011})}
+
+\[
+\begin{aligned}
+  & \nabla : \Gamma(T^*M) \to \Gamma(T^*M) \otimes \Gamma(T^*M) = \Gamma(T^*M \otimes T^*M) \\
+  & \nabla \alpha = d\alpha - \Gamma^k_{ \; \; i } \alpha_k e^i
+\end{aligned}
+\]
+Locally, for $\alpha = \alpha_j e^j$,
+\[
+d\alpha = \frac{ \partial \alpha_j }{ \partial x^k} dx^k \wedge e^j = \frac{1}{2} \left[ \frac{ \partial \alpha_j}{ \partial x^k} dx^k \wedge e^j + \frac{ \partial \alpha_k}{ \partial x^j} dx^j \wedge e^k \right] = \frac{1}{2} \left[ \frac{ \partial \alpha_j }{ \partial x^k} - \frac{ \partial \alpha_k}{ \partial x^j} \right] dx^k \wedge e^j
+\]
+\[
+\Gamma^k_{ \; \; i} \alpha_k e^i  = \Gamma^k_{ \; \; ij} \alpha_k e^i \otimes e^j \overset{[ij]}{\mapsto} \frac{1}{2} \left( \Gamma^k_{ \; \; ij} \alpha_k - \Gamma^k_{ \; \; ij} \alpha_k \right) e^i \wedge e^j
+\]
+where the antisymmetrizing operation, $[ \cdot \cdot ]$, s.t.
+\[
+\begin{aligned}
+  [ \cdot \cdot ] & : \otimes^2 T^*M \to \Lambda^2 T^*M = \Omega^2(M) \\
+  & T_{ij} e^i \otimes e^j \overset{ [ij]}{\mapsto } \frac{1}{2}(T_{ij} - T_{ji}) e^i \wedge e^j
+\end{aligned}
+\]
+is always possible with tensors, being well-defined for each local expression in the coordinate chart, or local frame.  
+
+Then define
+\begin{definition}
+  \[
+  d_{\nabla} := [ \cdot \cdot ] \circ \nabla
+\]
+\[
+\begin{aligned}
+  & T_{\nabla} : T^*M \to \Omega^2(M) \\ 
+  & T_{\nabla} = d_{\nabla} - d
+\end{aligned}
+\]
+with 
+\[
+T_{\nabla} \in \Gamma( \text{Hom}(T^*M, \Lambda^2T^*M)) = \Gamma(\text{Hom}(T^*M, \Omega^2(M) ) )
+\]
+\end{definition}
+
+Suppose $f\in C^{\infty}(M)$
+\[
+\begin{aligned}
+  & d(f\alpha) = df \wedge \alpha + fd\alpha \\ 
+  & d_{\nabla} (f\alpha) = [ \cdot \cdot ]\circ \nabla (f\alpha) = [ \cdot \cdot ]\circ ((df) \wedge \alpha + fd\alpha - f\Gamma^k_{ \; \; i } \alpha_k e^i ) = df \wedge \alpha + f d_{\nabla} \alpha
+\end{aligned}
+\]
+\[
+T_{\nabla} (f\alpha ) = fT_{\nabla}\alpha
+\]
+By Lemma 11.1 of Taubes (2011) \cite{CTaubes2011} (Suppose $\begin{aligned} & \quad \\
+  & E \to M \\
+  & E' \to M \end{aligned}$ vector bundle $(\mathbb{K} = \mathbb{R} \text{ or } \mathbb{C})$, and $\mathcal{L}$ is $\mathbb{R}$ or $\mathbb{C}$-linear map s.t. $\mathcal{L}: \Gamma(E) \to \Gamma(E')$.  Suppose $\mathcal{L}(fs) = f\mathcal{L}(s)$ \quad \, $\forall \, f \in C^{\infty}(M)$.  Then $\exists \, ! \, L \in \Gamma(\text{Hom}(E;E'))$ s.t. $\mathcal{L}(\cdot ) = L(\cdot )$).  
+
+Thus, by Lemma 11.1, $T_{\nabla}$ exists and is unique; as $T_{\nabla} \in \Gamma(\text{Hom}(T^*M; \Omega^2(M)))$.  
+
+$\nabla$ torsion free if $T_{\nabla}=0$.  
+
+\begin{claim}
+  Given any covariant derivative $\nabla$, $\exists \, $ torsion-free $\nabla' = \nabla +A$ covariant derivative.
+\end{claim}
+
+\begin{proof}
+  Observe that 
+\[
+\text{End}(T^*M) = T^*M \otimes TM
+\]
+Consider $A \in \Gamma(\text{End}(T^*M) \otimes T^*M) = \Gamma(\Omega^1(M;\text{End}(T^*M))) = \Gamma((T^*M\otimes TM) \otimes T^*M) = \Gamma((T^*M \otimes T^*M)\otimes TM)$ with automorphism
+\[
+\begin{aligned}
+  (T^*M \otimes TM) \otimes T^*M \to (T^*M \otimes T^*M) \otimes TM \\
+  (u\otimes u') \otimes v \mapsto (u\otimes v)\otimes u'
+\end{aligned}
+\]
+
+Observe also that 
+\[
+T_{\nabla} \in \Gamma(\text{Hom}(T^*M; \Lambda^2T^*M) = \Gamma(\Lambda^2 T^*M \otimes TM) \xrightarrow{ ( \cdot \cdot ) } \Gamma(\otimes^2T^*M\otimes TM)
+\]
+and so for 
+\[
+T_{\nabla} = d_{\nabla} - d = [\cdot \cdot ] \circ \nabla - d
+\]
+then
+\[
+T_{\nabla'} = [\cdot \cdot ] \circ \nabla' - d = [\cdot \cdot ] \circ (\nabla + A) - d  = T_{\nabla} + A = 0 
+\]
+where $A = -T_{\nabla}$.  
+\end{proof}
+
+\begin{claim}
+Suppose $\nabla$ torsion free, $\nabla $ covariant derivative on $T*M$.   \\
+Then so is $\nabla + A$ iff $A\in \Gamma((T^*M\otimes T^*M)\otimes T^*M)$ s.t. $A$ symmetric with respect to \\
+automormorphism
+\[
+\begin{aligned}
+  (T^*M\otimes TM) \otimes T^*M & \to (T^*M \otimes TM) \otimes T^*M \\ 
+  (u\otimes u')\otimes v & \mapsto (v\otimes u') \otimes u \\ 
+  \Gamma^k_{ \; \; ij} & \mapsto \Gamma^k_{ \; \; ji } 
+\end{aligned}
+\]
+\end{claim}
+
+From Subsection 15.3 The Levi-Civita connection/covariant derivative of  Taubes (2011) \cite{CTaubes2011}, 
+\begin{theorem}[Levi-Civita Thm.]
+  $\exists \, ! \, \nabla$ on orthonormal frame bundle s.t. $\nabla : \Gamma(T^*M) \to \Gamma(\otimes^2T^*M)$ torsion free, i.e. \\
+$\exists \, ! \, \nabla : \Gamma(T^*M) \to \Gamma(\otimes^2T^*M)$ s.t. $\nabla $ metric compatible and torsion free.
+\end{theorem}
+
+\begin{proof}
+  Choose orthonormal frame $\lbrace e^1 \dots e^n \rbrace$ for $T*M$ over some coordinate chart $U\subset M$.  
+\[
+\nabla e^k = A^k_{ \; \; i} e^i = A^k_{ \; \; ij} e^i \otimes e^j
+\]
+$\nabla$ metric compatible iff $A^k_{ \; \; i} = - A^i_{ \; \; k}$ ($A^k_{ \; \; i} = -\overline{A^i_{ \; \; k}}$ Hermitian case)
+
+
+I mention moving coframe here from Choquet-Bruhat (2009) \cite{YChoquet-Bruhat2009} because I either skipped over or can't find in Taubes' book where he came up with the relation for $de^j$ on pp. 211, Subsection 15.3 The Levi-Civita connection/covariant derivative of  Taubes (2011) \cite{CTaubes2011}.  
+
+
+
+
+
+From Chapter 6 Local Cauchy Problem, Section 2 Moving frame formulae, Subsection 2.1 Frame and coframe, pp. 143, Choquet-Bruhat (2009) \cite{YChoquet-Bruhat2009},
+
+Suppose 
+\begin{equation}\label{Eq:structcoeffscommrel}
+[e_a,e_b] = \frac{1}{2} C^c_{ab} e_c
+\end{equation}
+where $[e_a,e_b]:= e_a(e_b) - e_b(e_a)$, so $e_a$'s $\in $ Lie algebra $\mathfrak{g}$, a vector space $\mathfrak{g}$, with (orthonormal frame) basis, equipped with Lie Bracket $[ \, , \, ]:\mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$, and $C^c_{ab}$ are \textbf{structure coefficients}.    
+
+Now for the inner product on this $\mathfrak{g}$ vector space, $\langle e^a, e_b \rangle \equiv e^a(e_b) \equiv e^a \cdot e_b =\delta^a_{ \; \; b }$.  \emph{Don't confuse} this with the inner product related to the metric $g$ of $(M,g)$.  
+
+One can start from 
+\[
+de^c := \frac{-1}{2} C^c_{ab} e^a \wedge e^b
+\]
+and then obtain $[e_a,e_b] = \frac{1}{2} C^c_{ab} e_c$, Eq. (\ref{Eq:structcoeffscommrel}) (cf. pp. 143, Eq. (2.3) of Ch. VI Local Cauchy Problem, Subsection 2.1 Frame and coframe, Choquet-Bruhat (2009) \cite{YChoquet-Bruhat2009}, EY : 20160319 Choquet-Bruhat doesn't show this explicitly; please someone help me show this explicitly).  
+
+Nevertheless, 
+\[
+\begin{gathered}
+  T_{\nabla} e^k = (d_{\nabla} - d) e^k = [\cdot \cdot ] \circ \nabla e^k - de^k = [\cdot \cdot ] \circ A^k_{ \; \; ij} e^i \otimes e^j + \frac{1}{2} C^k_{ \; \; ij} e^i \wedge e^j = \frac{1}{2} ( (A^k_{ \; \; ij} - A^k_{ \; \; ji} ) + C^k_{ \; ij} ) e^i \wedge e^j \\ 
+  =0 \text{ if $\nabla$ torsion free (i.e. $T_{\nabla} =0$) } \\
+  \Longrightarrow C^k_{ \; ij} = -(A^k_{ \; \; ij} - A^k_{ \; \; ji})
+\end{gathered}
+\]
+Now \emph{in the specific case} of $\nabla : \Gamma (T*M) \to \Gamma(T^*M \otimes T^*M)$, and not in general, $\nabla : \Gamma(E) \to \Gamma(E \otimes T^*M)$, then $i,j,k \in 1 \dots d$ for $\text{dim}M=d$ (whereas, possibly, $\dim{E}=n$ and $k \in 1 \dots n$, in general).  It might be interesting to consider the torsion on $E^*$ in general, and if $\exists ! $ a Levi-Civita connection for this general principal $G$-bundle (probably not, but I don't have a formal proof).  
+
+By construction off the \emph{structure constants} $C^k_{\; ij}$, $A^k_{\; \; ij}$ connection 1-forms uniquely determined (and exist) since
+\[
+\begin{gathered}
+  C^k_{ \; \; ij} - C^j_{ \; ik} - C^i_{ \; jk} = - (A^k_{ \; \; ij} - A^k_{ \; \; ij} ) + A^j_{ \; \; ik} - A^k_{ \; \; ki} + A^i_{ \; \; jk} - A^i_{ \; \; kj} = - A^k_{ \; \; ij} + A^k_{ \; \; ji} + - A^i_{ \; \; jk} + A^k_{ \; \; ji} + A^i_{ \; \; jk} + A^k_{ \; \; ij} = \\
+  = 2 A^k_{ \; \; ji}  \\
+  \boxed{ A^k_{ \; \; ij} = \frac{1}{2} [ C^k_{ \; ji} - C^i_{ \; jk} - C^k_{ \; ik } ] }
+\end{gathered}
+\]
+where the skew-symmetry property of $A^i_{ \; \; k} = -A^k_{ \; \; i}$, which applies for $\mathbb{K} = \mathbb{R}$ (i.e. real valued manifolds), arising from \emph{metric compatibility} was exploited several times above.
+
+Taubes (2011) \cite{CTaubes2011} remarked that this was the only proof he could think of, a proof that pushes around indices in index calculations, exploiting a particular basis choice, and cyclic permutation, which wasn't very deep to him.  I take it on his word that there's no other way to prove this theorem.  
+
+
+
+
+\end{proof}
+
+cf. Subsection 15.4 A formula for the Levi-Civita connection of  Taubes (2011) \cite{CTaubes2011}
+
+\[
+\begin{aligned}
+  & \nabla e^k = \Gamma^k_{ \; \; i } e^i \\ 
+  & \nabla s = ds - \Gamma^k_{ \; \; i }s_k e^i \\
+  & \nabla e_j = \Gamma^k_{ \; \; j} e_k
+\end{aligned}
+\]
+\[
+\begin{gathered}
+  T_{\nabla} dx^k = (d_{\nabla} - d)(dx^k) = [ \cdot \cdot ] \circ \nabla dx^k = [ \cdot \cdot ] \cdot (-\Gamma^k_{ \; \; i} dx^i ) = [ \cdot \cdot ] \cdot ( -\Gamma^k_{ \; \; ij} dx^i \otimes dx^j) = \left( \frac{-1}{2} \right) (\Gamma^k_{ \; \; ij} - \Gamma^k_{ \; \; ji} ) dx^i \wedge dx^j \\
+   =0 \Longrightarrow \Gamma^k_{ \; \; ij} = \Gamma^k_{ \; \; ji }
+\end{gathered}
+\]
+But keep in mind that this symmetry in the bottom 2 indices is true, for sure, in terms of the coordinates and coordinate bases.  
+
+If $T_{\nabla}=0$, i.e. $\nabla$ torsion free, necessarily, $\Gamma^k_{ \; \; ij} = \Gamma^k_{ \; \; ji}$ in the coordinate frame.  
+
+\[
+\begin{gathered}
+  \nabla g = \nabla ( g_{ij} dx^i \otimes dx^j) = \left( \frac{ \partial g_{ij} }{ \partial x^k} - g_{lj} \Gamma^l_{ \; \; ik} - g_{il} \Gamma^l_{ \; \; jk} \right)( dx^i \otimes dx^j) \otimes dx^k \\
+ \frac{ \partial g_{ij} }{ \partial x^k} - \frac{1}{2} \left( \frac{ \partial g_{ik}}{ \partial x^j} + \frac{ \partial g_{ik} }{ \partial x^k} - \frac{ \partial g_{jk} }{ \partial x^i} \right) - \frac{1}{2} \left( \frac{ \partial g_{jk}}{ \partial x^i} + \frac{ \partial g_{ij} }{ \partial x^k} - \frac{ \partial g_{ik} }{ \partial x^j} \right) =0 \qquad \text{ formally, by cyclic permutation } \\ 
+ \Longrightarrow g_{lj} \Gamma^l_{ \; \; ik} = \frac{1}{2} \left( \frac{ \partial g_{ik} }{ \partial x^j} + \frac{ \partial g_{ij} }{ \partial x^k} - \frac{ \partial g_{jk} }{ \partial x^i} \right)
+\end{gathered}
+\]
+since $\nabla g=0$ (metric compatible).
+
+
+
+$\gamma : I \subset \mathbb{R} \to M$
+\[
+\nabla_{\dot{\gamma}} \dot{\gamma} =  \left( \dot{\gamma}^j \frac{ \partial \dot{\gamma}^k }{ \partial x^j } + \Gamma^k_{ \; \; ij} \dot{\gamma}^i \dot{\gamma}^j \right) \frac{\partial }{ \partial x^k} = \ddot{\gamma}^k + \Gamma^k_{ \; \; ij} \dot{\gamma}^i \dot{\gamma}^j = 0 \text{ if } \ddot{\gamma}^k = -\Gamma^k_{ \; \; ij} \dot{\gamma}^i \dot{\gamma}^j
+\]
+
+cf. Subsection 15.5 Covariantly constant sections of  Taubes (2011) \cite{CTaubes2011}
+
+Suppose vector bundle $E\to M$, connection $\nabla $ on $E$.  
+
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes, row sep=2em, column sep=3em, minimum width=1em]
+  {
+ \gamma^* E  &  E  \\
+I \subset \mathbb{R} & M  \\  };
+  \path[->]
+  (m-1-2) edge node [above] {$\gamma^*$} (m-1-1)
+  (m-2-2) edge node [auto] {$\pi^{-1}$} (m-1-2)
+  (m-2-1)  edge node [auto] {$\gamma^*(\pi^{-1} \circ \gamma) $} (m-1-1)
+   edge node [left] {$\gamma$} (m-2-2);
+\end{tikzpicture}
+
+$s\in \Gamma(E)$ covariantly constant if $\nabla s=0$.  
+
+If $\nabla s = 0$, $d_{\nabla} \nabla s=0$.  
+\[
+d_{\nabla} \nabla s = [ \cdot \cdot ] \circ \nabla^2 s = Fs = 0 \Longrightarrow F  \in \Gamma(\text{End}(E)\otimes \Lambda^2 T^*M) = \Gamma(\Omega^2(M; \text{End}E))
+\]
+Suppose $\gamma : I \subset \mathbb{R} \to M$
+
+$\gamma^* \nabla s =0$ covariantly constant with respect to $\gamma^* \nabla$.  
+
+Fix isomorphism $\begin{aligned} & \quad \\
+  & \Phi : \gamma^* E \to I \times V \qquad \, (V= \mathbb{R}^n \text{ or } \mathbb{C}^n) \\ 
+  & \Phi(s) = (t,s_{\Phi}(t)) \end{aligned}$
+
+\[
+\Phi((\gamma^*\nabla)s) = t\mapsto (t,((\gamma^*\nabla )s)_{\Phi} dt) \in \Gamma((I\times V)\otimes T^*I ) 
+\]
+\[
+((\gamma^* \nabla)s)_{\Phi} = \frac{ds_{\Phi}}{dt} + (A_{\Phi}(t))^k_{ \; \; i } s^i e_k \equiv \frac{ds}{dt} + (A(t))s
+\]
+\[
+(\gamma^* \nabla)s = 0 \Longrightarrow \frac{ds}{dt} + (A(t))s = 0 
+\]
+Then by Ch.8.3 vector field theorem from Taubes (2011) \cite{CTaubes2011}, or by ODE theorem, this system of ODEs can be solved, given initial conditions.  
+
+
+
+
+$s\in \Gamma(\gamma^* E)$ \emph{ parallel transported along $\gamma$} or \emph{ parallel along $\gamma$}
+
+
 \end{multicols*}
 
 \begin{thebibliography}{9}
@@ -4719,6 +4973,14 @@ T. Frankel,
 Cambridge University Press, 
 Second Edition,
 2004.
+
+
+\bibitem{CTaubes2011}
+Clifford Henry Taubes, \textbf{Differential Geometry: Bundles, Connections, Metrics and Curvature} (Oxford Graduate Texts in Mathematics, Vol. 23) Oxford University Press; 1 edition (December 1, 2011). ISBN-13: 978-0199605873
+
+
+\bibitem{YChoquet-Bruhat2009}
+Yvonne Choquet-Bruhat.  \textbf{General Relativity and the Einstein Equations} (Oxford Mathematical Monographs) 1st Edition.  Oxford Mathematical Monographs (February 4, 2009) ISBN-13: 978-0199230723
 
 
 
