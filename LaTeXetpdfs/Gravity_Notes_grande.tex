@@ -2236,8 +2236,15 @@ m\ddot{x}^{\alpha}(t) = \underbrace{mf^{\alpha}}_{F^{\alpha}}(x(t))
 \]
 $-\partial_{\alpha} f^{\alpha} = 4\pi G\rho$ (Poisson) \\
 $\rho $ mass density of matter
+\[
+m \ddot{x}^{\alpha}(t)= \underbrace{mf^{\alpha}}_{F^{\alpha}}(x(t))
+\]
+True?
 
 (EY : 20150330) You know this, $F=Gm_1m_2/r^2$
+
+Yes \\ 
+weak equivalence principle
 
 \[
 \ddot{x}^{\alpha}(t) - f^{\alpha}(x(t)) = 0 
@@ -2251,6 +2258,14 @@ Laplace asks: Is this ($\ddot{x}(t)$) of the form
 Conclusion: One cannot find $\Gamma$ s such that Newton's equation takes the form of an autoparallel.
 
 \end{proof}
+
+Question (from audience) We can evaluate the autoparallel equation pointwise?! But at each point, we can set the Gammas to zero?!
+
+Then, one should be able to write Newton's second law in the usual form?
+
+Prof. Schuller: you (observer) fall with the mass (i.e. accelerated reference frame) and so you transform $\Gamma$'s to be $0$.  The problem with this is if you do the same experiment in the North pole and fall with the body.  If someone else at the South Pole does the same experiment at the same time, with that same transformation (of reference frames), the effect of gravity cannot be transformed out.
+
+In a homogeneous gravitational field, you can possibly transform away gravity, $\Gamma=0$.  But in an inhomogeneous gravitational field, no.
 
 \subsection{The full wisdom of Newton I}
 
@@ -2389,10 +2404,12 @@ dt(X) < 0
   dt(v_{X}) > 0 
 \end{gathered}
 \]
+and
+(iii) $\nabla$ is torsion-free.
 
 \underline{Newton II}: 
 \[
-\nabla_{v_{X}} v_X = \frac{F}{m} \Longleftrightarrow m \cdot a = F
+\nabla_{v_{X}} v_X = \frac{F}{m} \Longleftrightarrow m \cdot \mathfrak{a} = F
 \]
 
 
@@ -2428,6 +2445,7 @@ in a chart.
   & (X^{\alpha})'' + \Gamma^{\alpha}_{\gamma \delta} X^{\gamma'} X^{\delta'} + \Gamma^{\alpha}_{ \, \, 00} X^{0'} X^{0'} + 2\Gamma^{\alpha}_{ \, \, \gamma 0} X^{\gamma'} X^{0'} = \frac{F^{\alpha}}{m} \quad \quad \, \alpha = 1,2,3
 \end{aligned}
 \]
+EY: 20160623: where the factor of 2 comes from torsion free $\nabla$
 
 \[
 \begin{gathered}
@@ -4946,6 +4964,105 @@ Then by Ch.8.3 vector field theorem from Taubes (2011) \cite{CTaubes2011}, or by
 
 $s\in \Gamma(\gamma^* E)$ \emph{ parallel transported along $\gamma$} or \emph{ parallel along $\gamma$}
 
+\part{AdS/CFT, black holes, EPS$=$ER, Holography}
+
+\section{On Black Holes, Quantum Information, Entanglement, and all that (2017) }  
+
+Jos\'{e} Barbon (IFT-CSIC, Univ. Autonoma de Madrid) gave the \href{Workshop introductory overview}{https://youtu.be/nsxgAOAEgbg} for the workshop "Black Holes, Quantum Information, Entanglement, and all that," (29 May-1 June, 2017, with the organizing committee of Thibault Damour (IHES), Vasily Pestun (IHES), Eliezer Rabinovici (IHES & Hebrew Univ. of Jerusalem).  
+
+In the talk, 
+
+cf. \href{https://youtu.be/nsxgAOAEgbg?t=43m13s}{43:13}  
+
+\subsection*{The church of the doubled Hilbert space}
+ 
+Any thermal box can be obtained by tracing over a second identical copy, if appropriately entangled into a global pure state.  
+
+\[
+\rho_R = \text{Tr}_L \sum_n C_n \Psi_n^L \otimes \Psi_n^R
+\]
+\[
+(C_n)_{\text{thermal}} = \left[ \frac{ e^{-\beta E_n} }{ \sum_m e^{-\beta E_M} } \right]^{1/2}
+\]
+
+But!!
+
+If the entanglement basis is taken to be the high-energy band of two "entangled" CFTs ... 
+\[
+|TFD \rangle \sim \sum_{E_n} e^{-\beta E_n/2} | E_n \rangle_L \otimes | E_n \rangle_R
+\]
+neglecting the tiny $e^{-S}$ spacings. we can approximate by continuous spectrum of fields in the background of an AdS black hole, to get ... 
+ 
+\[
+\int_E e^{-\beta E/2} |E\rangle_L \otimes | E\rangle_R 
+\]
+The HH state of the bulk fields!  
+
+cf. \href{https://youtu.be/nsxgAOAEgbg?t=46m16s}{46:16}
+
+SLOGAN: EPR $=$ ER
+Maldacena-Susskind  
+
+Accumulating a density of entanglement of $S \ggtr 1$ well-separated Bell pairs within a transversal size of order $(GS)^{1/2}$  seems to generate a geometrical bridge of area $GS$.  
+
+
+
+
+cf. \href{https://youtu.be/nsxgAOAEgbg?t=49m26s}{49:26}  
+
+\subsection*{Parametrizing complexity of entanglement}
+
+Pick a tensor decomposition of Hilbert space of dimension $\exp{(S)}$ into $S$ factors of $O(1)$ dimension.  
+\[
+\mathcal{H} = \mathcal{H}_1 \otimes \mathcal{H}_2 \otimes \dots \otimes \mathcal{H}_S
+\]
+A tensor of S indices gives a generic state.  
+
+cf. \href{https://youtu.be/nsxgAOAEgbg?t=55m10s}  
+
+\subsection*{A list of open questions \& problems}
+
+\begin{itemize}
+\item Need exactly calculable toy models of AdS/CFT along the lines of SYK model  
+\item Give a "renormalized" definition of quantum complexity for continuum CFTs 
+\item Can tensor networks describe bulk gravitons?  
+\item What is the space-time meaning of quantum complexity saturation?  
+\item Can we define approximate local observables for black hole inferiors?  
+\item Are there obstructions related to firewalls and/or fuzzballs?   
+\end{itemize}
+
+\href{https://youtu.be/nsxgAOAEgbg}{Workshop introductory overview } by Jos\'{e} Barbon for the \href{https://www.youtube.com/channel/UC4R1IsRVKs_qlWKTm9pT82Q}{Institut des Hautes Études Scientifiques (IHÉS)} gave me the first impetus to understand tensor networks as I sought to also understand the condensates of entanglement pairs within the black hole.  
+
+A Google search for introductions to tensor networks that are on arxiv ("Introduction Tensor Network arxiv") yielded Bridgeman and Chubb's course notes (bf. Bridgeman and Chubb (2017) \cite{BrCh2017}).    
+
+\subsection{List of stuff I want to look at/do/study}  
+I would like to compare/contrast the following:  
+\begin{itemize}
+\item Rotman (2010) \cite{JRotman2010}, Ch. 8, but starting from 8.4 Tensor Products, pp. 574  
+\item Jeffrey Lee (2009) \cite{JLee2009}, Ch. 7 Tensors 
+\end{itemize}
+
+Maldacena and Susskind (2013) \cite{MaSu2013}  
+
+
+\begin{itemize}
+\item Consider as physical system AdS-Schwarzchild black hole   
+\item CFT 
+\begin{itemize}
+\item \href{https://arxiv.org/pdf/1601.05000.pdf}{PFL Lectures on Conformal Field Theory in $D\geq 3$ Dimensions}, Rychkov (2016) \cite{Rych2016}.  
+\end{itemize}
+\end{itemize}
+
+
+Evenbly and Vidal (2011) \cite{EvVi2011}, Tensor network states and geometry
+
+Barb\'{o}n and Rabinovici (2015) \cite{BaRa2015}  
+
+Loose ends (might not be useful links)
+\begin{itemize}
+\item \url{https://arxiv.org/pdf/1506.06958.pdf}
+\item \url{https://arxiv.org/pdf/1512.02532.pdf} One-point Functions in AdS/dCFT from Matrix Product States
+\end{itemize}
 
 \end{multicols*}
 
@@ -4983,6 +5100,17 @@ Clifford Henry Taubes, \textbf{Differential Geometry: Bundles, Connections, Metr
 Yvonne Choquet-Bruhat.  \textbf{General Relativity and the Einstein Equations} (Oxford Mathematical Monographs) 1st Edition.  Oxford Mathematical Monographs (February 4, 2009) ISBN-13: 978-0199230723
 
 
+\bibitem{MaSu2013}  
+Juan Maldacena, Leonard Susskind.  "Cool horizons for entangled black holes."  \href{https://arxiv.org/abs/1306.0533}{ 	arXiv:1306.0533 \textbf{[hep-th]}}
+
+\bibitem{Rych2016}
+Slava Rychkov.  "EPFL Lectures on Conformal Field Theory in $D \geq 3$ Dimensions."    \href{https://arxiv.org/abs/1601.05000}{arXiv:1601.05000 \textbf{[hep-th]}}
+
+\bibitem{EvVi2011}
+G. Evenbly, G. Vidal.  "Tensor network states and geometry."  \href{https://arxiv.org/abs/1106.1082}{arXiv:1106.1082 \textbf{[quant-ph]}}
+
+\bibitem{BaRa2015} 
+Jos\'{e} L.F. Barb\'{o}n and Eliezer Rabinovici.  "Holographic Complexity and Spacetime Singularities."  \href{https://arxiv.org/abs/1509.09291}{arXiv:1509.09291 \textbf{[hep-th]}}
 
 \end{thebibliography}
 
